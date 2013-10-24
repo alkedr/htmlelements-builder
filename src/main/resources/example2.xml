@@ -1,0 +1,8 @@
+<htmlElement name="BlockWithFields" findBy="xpath=/some/xpath">
+    <htmlElement name="SubBlockWithFields" findBy="xpath=/some/xpath/1">
+        <htmlElement name="SubSubBlockWithoutFields" findBy="xpath=/some/xpath/1/1">
+        </htmlElement>
+    </htmlElement>
+    <htmlElement name="SubBlockWithoutFields" findBy="xpath=/some/xpath/2">
+    </htmlElement>
+</htmlElement>
