@@ -17,8 +17,18 @@ import static ru.yandex.qatools.htmlelements.builder.HtmlElementTypeSerializer.s
 
 public class HtmlElementTypeTest {
 
+    @Rule
+    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+
     private static File getResourceFile(String name) {
         return new File(HtmlElementTypeTest.class.getResource(name).getPath());
+    }
+
+    private static void compareFiles(File file1, File file2) throws IOException {
+        String expected = FileUtils.readFileToString(file1);
+        String actual = FileUtils.readFileToString(file2);
+        assertEquals(expected, actual);
     }
 
 
@@ -33,7 +43,7 @@ public class HtmlElementTypeTest {
     }
 
     @Test
-    public void generateSimpleBlockTest() throws IOException {
+    public void serializeSimpleBlockTest() throws IOException {
         String expected = FileUtils.readFileToString(getResourceFile("/ru/yandex/qatools/htmlelements/examples/SimpleBlock.java"));
         HtmlElementType htmlElementType = new HtmlElementType();
         htmlElementType.setName("SimpleBlock");
@@ -41,17 +51,8 @@ public class HtmlElementTypeTest {
         assertEquals(expected, serialize(htmlElementType));
     }
 
-    @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
-
-    private static void compareFiles(File file1, File file2) throws IOException {
-        String expected = FileUtils.readFileToString(file1);
-        String actual = FileUtils.readFileToString(file2);
-        assertEquals(expected, actual);
-    }
-
     @Test
-    public void saveSimpleBlockTest() throws IOException, JAXBException {
+    public void writeSimpleBlockTest() throws IOException, JAXBException {
         Reader reader = new BufferedReader(new FileReader(getResourceFile("/example.xml")));
         Unmarshaller unmarshaller = JAXBContext.newInstance(HtmlElementType.class.getPackage().getName()).createUnmarshaller();
         @SuppressWarnings("unchecked")
@@ -65,7 +66,7 @@ public class HtmlElementTypeTest {
     }
 
     @Test
-    public void generateBlockWithFields() throws IOException, JAXBException {
+    public void writeBlockWithFieldsTest() throws IOException, JAXBException {
         Reader reader = new BufferedReader(new FileReader(getResourceFile("/example2.xml")));
         Unmarshaller unmarshaller = JAXBContext.newInstance(HtmlElementType.class.getPackage().getName()).createUnmarshaller();
         @SuppressWarnings("unchecked")
