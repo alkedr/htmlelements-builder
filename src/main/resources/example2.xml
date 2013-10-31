@@ -6,3 +6,29 @@
     <htmlElement name="SubBlockWithoutFields" findBy="xpath=/some/xpath/2">
     </htmlElement>
 </htmlElement>
+
+
+
+
+<htmlElement name="BlockWithFields" findBy="xpath=/some/xpath">
+    <annotation name="classAnnotation" value="classAnnotationValue"/>
+    <field name="myBlock1" type="SubBlockWithFields">
+        <annotation name="fieldAnnotation" value="fieldAnnotationValue"/>
+    </field>
+    <field name="myBlock2" type="SubBlockWithoutFields">
+        <annotation name="" value=""/>
+    </field>
+</htmlElement>
+
+
+<htmlElement name="SubBlockWithFields" findBy="xpath=/some/xpath/1">
+    <field name="myBlock1" type="SubSubBlockWithoutFields">
+        <annotation name="" value=""/>
+    </field>
+</htmlElement>
+
+<htmlElement name="SubSubBlockWithoutFields" findBy="xpath=/some/xpath/1/1">
+</htmlElement>
+
+<htmlElement name="SubBlockWithoutFields" findBy="xpath=/some/xpath/2">
+</htmlElement>

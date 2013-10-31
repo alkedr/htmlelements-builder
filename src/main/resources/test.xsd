@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:extensionBindingPrefixes="annox"
+        xmlns:annox="http://annox.dev.java.net">
+
+    <xs:complexType name="SubBlockWithoutFields">
+    </xs:complexType>
+
+    <xs:complexType name="SubSubBlockWithoutFields">
+    </xs:complexType>
+
+    <xs:complexType name="SubBlockWithFields">
+        <xs:sequence>
+            <xs:element name="subSubBlockWithoutFields" type="SubSubBlockWithoutFields"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BlockWithFields">
+        <xs:annotation><xs:appinfo>
+            <annox:annotate>
+                <net.thucydides.core.annotations.NamedUrls>
+                    <net.thucydides.core.annotations.NamedUrl name="edit.camp" url="/registered/main.pl?cmd=editCamp&amp;cid={1}"/>
+                    <net.thucydides.core.annotations.NamedUrl name="edit.camp.for.login" url="/registered/main.pl?cmd=editCamp&amp;cid={1}&amp;ulogin={2}"/>
+                    <net.thucydides.core.annotations.NamedUrl name="new.camp.for.login" url="/registered/main.pl?cmd=editCamp&amp;new_camp=1&amp;ulogin={1}"/>
+                    <net.thucydides.core.annotations.NamedUrl name="new.camp" url="/registered/main.pl?cmd=editCamp&amp;new_camp=1"/>
+                </net.thucydides.core.annotations.NamedUrls>
+            </annox:annotate>
+        </xs:appinfo></xs:annotation>
+        <xs:sequence>
+            <xs:element name="subBlockWithFields" type="SubBlockWithFields">
+                <xs:annotation><xs:appinfo>
+                    <annox:annotate target="field">
+                        <ru.yandex.qatools.htmlelements.annotations.Name value="Подблок с полями"/>
+                    </annox:annotate>
+                    <annox:annotate target="field">
+                        <org.openqa.selenium.support.FindBy xpath="/some/xpath"/>
+                    </annox:annotate>
+                </xs:appinfo></xs:annotation>
+            </xs:element>
+            <xs:element name="subBlockWithoutFields" type="SubBlockWithoutFields"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

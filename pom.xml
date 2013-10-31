@@ -76,6 +76,7 @@
                     <extension>true</extension>
                     <args>
                         <arg>-Xinheritance</arg>
+                        <arg>-Xannotate</arg>
                     </args>
                     <plugins>
                         <plugin>
@@ -83,8 +84,25 @@
                             <artifactId>jaxb2-basics</artifactId>
                             <version>0.6.4</version>
                         </plugin>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics-annotate</artifactId>
+                            <version>0.6.4</version>
+                        </plugin>
                     </plugins>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.thucydides</groupId>
+                        <artifactId>thucydides-core</artifactId>
+                        <version>0.9.212</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ru.yandex.qatools.htmlelements</groupId>
+                        <artifactId>htmlelements-thucydides</artifactId>
+                        <version>1.11</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
