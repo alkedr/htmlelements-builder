@@ -16,6 +16,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.31.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-thucydides</artifactId>
+            <version>1.11</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
