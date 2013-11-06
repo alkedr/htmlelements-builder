@@ -12,6 +12,10 @@
 
     <name>Yandex QATools Htmlelements Beans</name>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -55,54 +59,31 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.8.2</version>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>1.0</version>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>transform</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                     </execution>
                 </executions>
                 <configuration>
-                    <schemaDirectory>src/main/resources</schemaDirectory>
-                    <bindingDirectory>src/main/resources</bindingDirectory>
-                    <generatePackage>ru.yandex.qatools.htmlelements.builder</generatePackage>
-                    <generateDirectory>${project.build.directory}/generated-sources/xjc1</generateDirectory>
-                    <readOnly>true</readOnly>
-                    <removeOldOutput>true</removeOldOutput>
-                    <verbose>true</verbose>
-                    <extension>true</extension>
-                    <args>
-                        <arg>-Xinheritance</arg>
-                        <arg>-Xannotate</arg>
-                    </args>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.jvnet.jaxb2_commons</groupId>
-                            <artifactId>jaxb2-basics</artifactId>
-                            <version>0.6.4</version>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.jvnet.jaxb2_commons</groupId>
-                            <artifactId>jaxb2-basics-annotate</artifactId>
-                            <version>0.6.4</version>
-                        </plugin>
-                    </plugins>
+                    <transformationSets>
+                        <transformationSet>
+                            <dir>src/main/xml</dir>
+                            <outputDir>${project.build.directory}/generated-sources/xslt/java/ru/yandex/qatools/htmlelements/builder/example</outputDir>
+                            <stylesheet>src/main/xmlToJava.xsl</stylesheet>
+                            <fileMappers>
+                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                                    <targetExtension>.java</targetExtension>
+                                </fileMapper>
+                            </fileMappers>
+                        </transformationSet>
+                    </transformationSets>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.thucydides</groupId>
-                        <artifactId>thucydides-core</artifactId>
-                        <version>0.9.212</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>ru.yandex.qatools.htmlelements</groupId>
-                        <artifactId>htmlelements-thucydides</artifactId>
-                        <version>1.11</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

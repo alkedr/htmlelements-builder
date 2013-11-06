@@ -1,0 +1,36 @@
+<file package="ru.yandex.qatools.htmlelements.builder.example">
+    <import class="org.openqa.selenium.WebDriver"/>
+    <import class="ru.yandex.qatools.htmlelements.thucydides.BlockPageObject"/>
+    <import class="ru.yandex.qatools.htmlelements.element.Link"/>
+    <import class="net.thucydides.core.annotations.NamedUrls"/>
+    <import class="net.thucydides.core.annotations.NamedUrl"/>
+    <import class="ru.yandex.qatools.htmlelements.annotations.Name"/>
+    <import class="org.openqa.selenium.support.FindBy"/>
+
+    <class name="EditCampPage" extends="BlockPageObject">
+        <annotations>
+            <NamedUrls>
+                <NamedUrl name="edit.camp" url="/registered/main.pl?cmd=editCamp&amp;cid={1}"/>
+                <NamedUrl name="edit.camp.for.login" url="/registered/main.pl?cmd=editCamp&amp;cid={1}&amp;ulogin={2}"/>
+                <NamedUrl name="new.camp.for.login" url="/registered/main.pl?cmd=editCamp&amp;new_camp=1&amp;ulogin={1}"/>
+                <NamedUrl name="new.camp" url="/registered/main.pl?cmd=editCamp&amp;new_camp=1"/>
+            </NamedUrls>
+        </annotations>
+
+        <constructor arg1="WebDriver"/>
+
+        <field type="Link" name="showCampLink">
+            <annotations>
+                <Name value="Ссылка на показ кампании"/>
+                <FindBy xpath=".//a[@class='b-campaign-edit__exit']"/>
+            </annotations>
+        </field>
+
+        <field type="Link" name="showCampLink2">
+            <annotations>
+                <Name value="Ссылка на показ кампании2"/>
+                <FindBy xpath=".//a[@class='b-campaign-edit__exit2']"/>
+            </annotations>
+        </field>
+    </class>
+</file>
